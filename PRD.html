@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fantasy Quest Management System - PRD</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #7f8c8d;
+        }
+        .mermaid {
+            text-align: center;
+            margin: 20px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+        .feature-list {
+            background: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .module-box {
+            background: #e8f4f8;
+            padding: 15px;
+            border-left: 4px solid #3498db;
+            margin: 10px 0;
+        }
+        code {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎮 Fantasy Quest Management System</h1>
+        <h2>Product Requirements Document</h2>
+        
+        <h3>Executive Summary</h3>
+        <p>The Fantasy Quest Management System is a modular monolith application designed to manage quests, characters, and guilds in a fantasy gaming world. Built with clean architecture principles, it demonstrates how to structure a maintainable and scalable application using C# and .NET 8.</p>
+
+        <h2>🏗️ System Architecture</h2>
+        <div class="mermaid">
+            graph TB
+                subgraph "UI Layer"
+                    UI[Console UI]
+                end
+
+                subgraph "Application Layer"
+                    App[Application Services]
+                    DI[DI Container]
+                end
+
+                subgraph "Domain Layer"
+                    subgraph "Quest Module"
+                        QS[Quest Service]
+                        QE[Quest Entities]
+                        QV[Quest Validators]
+                    end
+                    
+                    subgraph "Character Module"
+                        CS[Character Service]
+                        CE[Character Entities]
+                        CV[Character Validators]
+                    end
+                    
+                    subgraph "Guild Module"
+                        GS[Guild Service]
+                        GE[Guild Entities]
+                        GV[Guild Validators]
+                    end
+                    
+                    subgraph "Reward Module"
+                        RS[Reward Service]
+                        RE[Reward Entities]
+                        RV[Reward Validators]
+                    end
+                end
+
+                subgraph "Infrastructure Layer"
+                    subgraph "Data Access"
+                        QRepo[Quest Repository]
+                        CRepo[Character Repository]
+                        GRepo[Guild Repository]
+                        RRepo[Reward Repository]
+                    end
+                    
+                    subgraph "Storage"
+                        Memory[In-Memory Storage]
+                        DB[(Database - Future)]
+                    end
+                end
+
+                UI --> App
+                App --> QS
+                App --> CS
+                App --> GS
+                App --> RS
+                
+                QS --> QRepo
+                CS --> CRepo
+                GS --> GRepo
+                RS --> RRepo
+                
+                QRepo --> Memory
+                CRepo --> Memory
+                GRepo --> Memory
+                RRepo --> Memory
+                
+                Memory -.-> DB
+                
+                DI --> App
+                DI --> QS
+                DI --> CS
+                DI --> GS
+                DI --> RS
+        </div>
+
+        <h2>📋 Core Features</h2>
+        <div class="feature-list">
+            <h3>Quest Management</h3>
+            <ul>
+                <li>Create new quests with title, description, difficulty, and rewards</li>
+                <li>Assign quests to characters or guilds</li>
+                <li>Track quest completion status</li>
+                <li>View quest history and statistics</li>
+            </ul>
+
+            <h3>Character Management</h3>
+            <ul>
+                <li>Create and manage player characters</li>
+                <li>Track character stats (level, experience, skills)</li>
+                <li>Assign characters to guilds</li>
+                <li>View character quest history</li>
+            </ul>
+
+            <h3>Guild Management</h3>
+            <ul>
+                <li>Create and manage guilds</li>
+                <li>Handle guild membership</li>
+                <li>Assign guild-wide quests</li>
+                <li>Track guild reputation and achievements</li>
+            </ul>
+
+            <h3>Reward System</h3>
+            <ul>
+                <li>Manage quest rewards (experience, gold, items)</li>
+                <li>Track character progression</li>
+                <li>Handle reward distribution</li>
+                <li>Maintain reward history</li>
+            </ul>
+        </div>
+
+        <h2>🏛️ Module Architecture</h2>
+        
+        <div class="module-box">
+            <h3>Quest Module</h3>
+            <p><strong>Responsibility:</strong> Manages all quest-related operations</p>
+            <p><strong>Key Entities:</strong> Quest, QuestAssignment, QuestCompletion</p>
+            <p><strong>Services:</strong> QuestService, QuestAssignmentService</p>
+        </div>
+
+        <div class="module-box">
+            <h3>Character Module</h3>
+            <p><strong>Responsibility:</strong> Handles character management and progression</p>
+            <p><strong>Key Entities:</strong> Character, CharacterStats, CharacterSkill</p>
+            <p><strong>Services:</strong> CharacterService, CharacterProgressionService</p>
+        </div>
+
+        <div class="module-box">
+            <h3>Guild Module</h3>
+            <p><strong>Responsibility:</strong> Manages guild operations and membership</p>
+            <p><strong>Key Entities:</strong> Guild, GuildMember, GuildAchievement</p>
+            <p><strong>Services:</strong> GuildService, GuildMembershipService</p>
+        </div>
+
+        <div class="module-box">
+            <h3>Reward Module</h3>
+            <p><strong>Responsibility:</strong> Handles reward distribution and tracking</p>
+            <p><strong>Key Entities:</strong> Reward, RewardDistribution, RewardHistory</p>
+            <p><strong>Services:</strong> RewardService, RewardDistributionService</p>
+        </div>
+
+        <h2>🔄 Module Interactions</h2>
+        <div class="mermaid">
+            sequenceDiagram
+                participant UI as Console UI
+                participant QS as Quest Service
+                participant CS as Character Service
+                participant GS as Guild Service
+                participant RS as Reward Service
+                participant Repo as Repositories
+
+                UI->>QS: Create Quest
+                QS->>Repo: Save Quest
+                Repo-->>QS: Quest Created
+                QS-->>UI: Quest Created Successfully
+
+                UI->>QS: Assign Quest to Character
+                QS->>CS: Validate Character
+                CS-->>QS: Character Valid
+                QS->>Repo: Save Assignment
+                QS-->>UI: Quest Assigned
+
+                UI->>QS: Complete Quest
+                QS->>RS: Calculate Rewards
+                RS->>CS: Update Character Stats
+                CS->>Repo: Save Character Updates
+                RS->>Repo: Save Reward History
+                QS->>Repo: Update Quest Status
+                QS-->>UI: Quest Completed
+        </div>
+
+        <h2>💾 Data Storage Strategy</h2>
+        <p>The system uses an in-memory storage approach with the following benefits:</p>
+        <ul>
+            <li><strong>Simplicity:</strong> No external database setup required</li>
+            <li><strong>Performance:</strong> Fast in-memory operations</li>
+            <li><strong>Testability:</strong> Easy to reset state between tests</li>
+            <li><strong>Extensibility:</strong> Repository pattern makes it easy to swap storage implementations</li>
+        </ul>
+
+        <h2>🎯 Design Principles</h2>
+        <ul>
+            <li><strong>Single Responsibility:</strong> Each module has a clear, focused responsibility</li>
+            <li><strong>Dependency Inversion:</strong> High-level modules don't depend on low-level modules</li>
+            <li><strong>Interface Segregation:</strong> Clients depend only on interfaces they use</li>
+            <li><strong>Open/Closed:</strong> Open for extension, closed for modification</li>
+            <li><strong>Loose Coupling:</strong> Modules communicate through well-defined interfaces</li>
+        </ul>
+
+        <h2>🚀 Future Enhancements</h2>
+        <ul>
+            <li>Database persistence (SQL Server, PostgreSQL)</li>
+            <li>Web API layer for external integrations</li>
+            <li>Event-driven architecture with message queues</li>
+            <li>Advanced quest chains and dependencies</li>
+            <li>Real-time notifications and updates</li>
+            <li>Advanced analytics and reporting</li>
+        </ul>
+
+        <h2>📊 Technical Specifications</h2>
+        <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+            <tr style="background: #3498db; color: white;">
+                <th style="padding: 10px; border: 1px solid #ddd;">Component</th>
+                <th style="padding: 10px; border: 1px solid #ddd;">Technology</th>
+                <th style="padding: 10px; border: 1px solid #ddd;">Purpose</th>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border: 1px solid #ddd;">Runtime</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">.NET 8</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Modern, performant runtime</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border: 1px solid #ddd;">Language</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">C# 12</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Type-safe, modern language features</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border: 1px solid #ddd;">DI Container</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Microsoft.Extensions.DependencyInjection</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Built-in dependency injection</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border: 1px solid #ddd;">Validation</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">FluentValidation</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Business rule validation</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border: 1px solid #ddd;">Testing</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">xUnit + Moq</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Unit testing and mocking</td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</body>
+</html> 
