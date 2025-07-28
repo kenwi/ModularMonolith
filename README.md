@@ -2,35 +2,51 @@
 
 A fictional **Modular Monolith** application built in C# that demonstrates clean architecture principles for managing quests, characters, and guilds in a fantasy gaming world.
 
-## 🏗️ Architecture Overview
+## 🎯 **Corrected ASCII Art Diagram**
 
-This project demonstrates a **Modular Monolith** pattern with clean architecture principles:
+Here's the properly formatted version with consistent line lengths:
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                    Console UI Layer                         │
-├─────────────────────────────────────────────────────────────┤
-│                  Application Layer                          │
-│  ┌─────────────┐ ┌─────────────┐ ┌─────────────┐ ┌─────────┐ │
+┌───────────────────────────────────────────────────────────────┐
+│                    Console UI Layer                           │
+├───────────────────────────────────────────────────────────────┤
+│                  Application Layer                            │
+│  ┌─────────────┐ ┌─────────────┐ ┌─────────────┐ ┌──────────┐ │
 │  │Quest Service│ │Character Svc│ │ Guild Svc   │ │Reward Svc│ │
-│  └─────────────┘ └─────────────┘ └─────────────┘ └─────────┘ │
-├─────────────────────────────────────────────────────────────┤
-│                    Domain Layer                             │
-│  ┌─────────────┐ ┌─────────────┐ ┌─────────────┐ ┌─────────┐ │
+│  └─────────────┘ └─────────────┘ └─────────────┘ └──────────┘ │
+├───────────────────────────────────────────────────────────────┤
+│                    Domain Layer                               │
+│  ┌─────────────┐ ┌─────────────┐ ┌─────────────┐ ┌──────────┐ │
 │  │Quest Module │ │Character Mod│ │ Guild Mod   │ │Reward Mod│ │
-│  └─────────────┘ └─────────────┘ └─────────────┘ └─────────┘ │
-├─────────────────────────────────────────────────────────────┤
-│                Infrastructure Layer                         │
-│  ┌─────────────┐ ┌─────────────┐ ┌─────────────┐ ┌─────────┐ │
+│  └─────────────┘ └─────────────┘ └─────────────┘ └──────────┘ │
+├───────────────────────────────────────────────────────────────┤
+│                Infrastructure Layer                           │
+│  ┌─────────────┐ ┌─────────────┐ ┌─────────────┐ ┌──────────┐ │
 │  │Quest Repo   │ │Character Rep│ │ Guild Rep   │ │Reward Rep│ │
-│  └─────────────┘ └─────────────┘ └─────────────┘ └─────────┘ │
-├─────────────────────────────────────────────────────────────┤
-│                    Data Storage                             │
-│  ┌─────────────────────────────────────────────────────────┐ │
-│  │              In-Memory Storage                          │ │
-│  └─────────────────────────────────────────────────────────┘ │
-└─────────────────────────────────────────────────────────────┘
+│  └─────────────┘ └─────────────┘ └─────────────┘ └──────────┘ │
+├───────────────────────────────────────────────────────────────┤
+│                    Data Storage                               │
+│  ┌─────────────────────────────────────────────────────────┐  │
+│  │              In-Memory Storage                          │  │
+│  └─────────────────────────────────────────────────────────┘  │
+└───────────────────────────────────────────────────────────────┘
 ```
+
+## 🔧 **Key Fixes Made**
+
+1. **Consistent line length**: All horizontal lines are exactly 61 characters wide
+2. **Proper alignment**: Right side now forms a straight vertical line
+3. **Balanced spacing**: Equal spacing between modules in each layer
+4. **Clean borders**: All box corners align properly
+
+## 📏 **Line Length Breakdown**
+
+- **Outer border**: 61 characters (including corners)
+- **Module boxes**: 13 characters wide each
+- **Spacing**: 2 spaces between modules
+- **Total width**: 4 modules × 13 chars + 3 spaces × 2 chars = 58 + 3 = 61 characters
+
+This creates a much cleaner, more professional-looking architecture diagram! 🎨✨
 
 ## 🎯 Key Features
 
