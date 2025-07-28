@@ -2,10 +2,6 @@
 
 A fictional **Modular Monolith** application built in C# that demonstrates clean architecture principles for managing quests, characters, and guilds in a fantasy gaming world.
 
-## 🎯 **Corrected ASCII Art Diagram**
-
-Here's the properly formatted version with consistent line lengths:
-
 ```
 ┌───────────────────────────────────────────────────────────────┐
 │                    Console UI Layer                           │
